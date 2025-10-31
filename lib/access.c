@@ -106,6 +106,12 @@ byte
 pci_read_byte(struct pci_dev *d, int pos)
 {
   byte buf;
+  if (pos == PCI_REVISION_ID)
+    {
+      int value = sysfs_get_revision(d);
+      if (value >= 0)
+        return (byte)value;
+    }
   pci_read_data(d, &buf, pos, 1);
   return buf;
 }

@@ -151,6 +151,11 @@ sysfs_get_value(struct pci_dev *d, char *object, int mandatory)
     return -1;
 }
 
+int sysfs_get_revision(struct pci_dev *d)
+{
+  return sysfs_get_value(d, "revision", 0);
+}
+
 static void
 sysfs_get_resources(struct pci_dev *d)
 {
